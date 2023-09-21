@@ -17,13 +17,16 @@
 		{% include 'header.html' %}
 
 		<div class="container m-4">
+
 			{% block content %}
 			<form method="post" class="form-signin">
 				{% csrf_token %}
 				{{ form.as_p }}
 				<button type="submit">Login</button>
 			</form>
+			<a href="/accounts/register" class="btn btn-outline-secondary m-4">Don't have an account, Register!</a>
 			{% endblock %}
+
 		</div>
 
 		<footer class="py-3 my-4">
