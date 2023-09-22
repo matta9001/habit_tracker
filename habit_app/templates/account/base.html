@@ -10,15 +10,19 @@
 	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-body-tertiary">
 
 	<main>
 
 		{% include 'header.html' %}
 
     <div class="container p-4">
-      {% block content %}
-      {% endblock %}
+      <div class="row">
+        <div class="col-md-8 col-sm-12 mx-auto justify-content-center bg-body border rounded shadow p-4">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
     </div>
 
 		<footer class="py-3 my-4">
