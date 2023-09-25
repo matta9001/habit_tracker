@@ -19,11 +19,17 @@
         <div class="container p-4">
 
             <button class="btn btn-danger"><a href="/accounts/logout">Logout</a></button>
-            
+
             <h2>User Profile</h2>
             <p>Username: {{ user.username }}</p>
             <p>Email: {{ user.email }}</p>
             <!-- Add other user attributes here -->
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Update</button>
+            </form>
         </div>
 
         <footer class="py-3 my-4">
