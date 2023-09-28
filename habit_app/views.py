@@ -16,6 +16,7 @@ def profile(request):
 @login_required
 def manage(request):
     user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    print(user_profile)
 
     if request.method == 'POST':
         form = EditUserForm(request.POST, request.FILES, instance=user_profile)
