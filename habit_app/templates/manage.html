@@ -10,17 +10,6 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 </head>
 
-<style>
-    .profile-pic {
-        object-fit: cover;
-        width: 128px;
-        height: 128px;
-        border-radius: 50%;
-        border: 1px solid #2c2c2c;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-</style>
-
 <body class="bg-body-tertiary">
 
     <main>
@@ -31,17 +20,13 @@
 
         <div class="container p-4">
 
-
-            <div class="d-flex flex-column align-items-center">
-                <h1>🌌 126 Days</h1>
-                <p>Work out daily. Drink electrolytes.</p>
-                <img src="{{ user.userprofile.profile_picture.url }}"
-                    class="rounded-circle border border-dark-subtle shadow profile-pic" width=128 alt="Profile Picture">
-                <a href="/manage" class="btn btn-success mt-4">Check In!</a>
-            </div>
-
-
-            <a href="/manage" class="btn btn-dark mt-4">Manage Account</a>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Update</button>
+            </form>
+            <a href="/accounts/logout" class="btn btn-dark mt-4">Logout</a>
+            <a href="/accounts/password/change/" class="btn btn-dark mt-4">Change Password</a>
         </div>
 
         <footer class="py-3 my-4">

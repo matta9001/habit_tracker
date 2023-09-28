@@ -14,7 +14,9 @@
 
 	<main>
 
-		{% include 'header.html' %}
+        {% with profile_picture=user.userprofile.profile_picture.url %}
+            {% include 'header.html' %}
+        {% endwith %}
 
 		<div class="container">
 		</div>
