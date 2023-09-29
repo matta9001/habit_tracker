@@ -1,15 +1,24 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
 from .forms import EditUserForm
 from .models import UserProfile
-from .utils import calculate_streak, compare_utc, hours_since_time
+from .utils import calculate_streak, compare_utc, hours_since_time, get_current_utc
 
 
 def index(request):
     return render(request, 'index.html')
 
+
+@login_required
+def checkin(request):
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    print(user_profile.checkins)
+    utc_time_str = get_current_utc()
+    user_profile.checkins.append(utc_time_str)
+    user_profile.save()
+    return redirect('/profile')
 
 @login_required
 def profile(request):

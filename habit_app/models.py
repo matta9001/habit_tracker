@@ -1,10 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-import time
+from .utils import get_current_utc
 
 def get_default_empty_list():
-    utc_time_str = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime())
+    utc_time_str = get_current_utc()
     return [ utc_time_str ]
 
 class UserProfile(models.Model):

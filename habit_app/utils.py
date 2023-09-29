@@ -1,6 +1,9 @@
 import time
 from datetime import datetime
 
+def get_current_utc():
+    return time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime())
+
 # UTC Format: '2023-09-28 14:17:00'
 # Calculates the distance in hours from the input and the current time
 def hours_since_time(utc_time_str):

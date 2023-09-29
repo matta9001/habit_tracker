@@ -18,11 +18,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from habit_app.views import index, profile, manage
+from habit_app.views import index, profile, manage, checkin
 
 urlpatterns = [
     path('', index),
     path('profile/', profile),
+    path('checkin/', checkin),
     path('manage/', manage),
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
