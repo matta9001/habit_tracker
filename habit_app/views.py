@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .forms import EditUserForm
 from .models import UserProfile
-from .utils import calculate_streak, compare_utc, hours_since_time, get_current_utc
+from .utils import calculate_streak, compare_utc, hours_since_time, get_current_utc, level_map
 
 
 def index(request):
@@ -60,10 +60,14 @@ def profile(request):
         context['checkin_button']['destination'] = 'purchase'
         context['checkin_button']['disabled'] = ''
 
-
     # Calculate Streak 
     streak = round(calculate_streak(user_profile.checkins) / 24)
     context['streak'] = streak
+
+    # Get Level Emoji
+    level = streak // 7 
+    level_capped = min(level, 51)
+    context['level_emoji'] = level_map[level_capped]
 
     return render(request, 'profile.html', context)
 
