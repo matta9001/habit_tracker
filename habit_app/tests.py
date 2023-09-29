@@ -1,5 +1,5 @@
 from django.test import TestCase
-from habit_app.views import hours_since_time, compare_utc, calculate_streak
+from habit_app.utils import hours_since_time, compare_utc, calculate_streak
 import time
 from datetime import datetime
 
