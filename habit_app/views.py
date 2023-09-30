@@ -42,14 +42,13 @@ def checkin(request):
 
     last_checkin = user_profile.checkins[-1]
     hours_since = hours_since_time(last_checkin)
-    print(hours_since)
 
     if hours_since >= 1 and hours_since <= 48:
         utc_time_str = get_current_utc()
         user_profile.checkins.append(utc_time_str)
         user_profile.save()
     else:
-        return HttpResponse(status=403, content="why u do this")
+        return HttpResponse(status=403)
 
     return redirect('/profile')
 
