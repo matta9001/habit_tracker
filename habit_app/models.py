@@ -4,9 +4,11 @@ from .utils import get_current_utc
 
 import time
 
+
 def get_default_checkins():
     yesterday_utc = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(time.time() - 86400))
     return [ yesterday_utc ]
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

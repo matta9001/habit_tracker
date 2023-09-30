@@ -14,16 +14,18 @@
 
 	<main>
 
-		{% include 'header.html' %}
+		{% with profile_picture=user.userprofile.profile_picture.url|default:'/media/profile.png' %}
+			{% include 'header.html' %}
+		{% endwith %}
 
-    <div class="container p-4">
-      <div class="row">
-        <div class="col-md-8 col-sm-12 mx-auto justify-content-center bg-body border rounded shadow p-4">
-          {% block content %}
-          {% endblock %}
-        </div>
-      </div>
-    </div>
+		<div class="container p-4">
+			<div class="row">
+				<div class="col-md-8 col-sm-12 mx-auto justify-content-center bg-body border rounded shadow p-4">
+					{% block content %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
 
 		<footer class="py-3 my-4">
 			<p class="text-center text-muted">© 2023 </p>

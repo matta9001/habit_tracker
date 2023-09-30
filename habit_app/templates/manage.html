@@ -14,21 +14,25 @@
 
     <main>
 
-        {% with profile_picture=user.userprofile.profile_picture.url %}
+        {% with profile_picture=user.userprofile.profile_picture.url|default:'/media/profile.png %}
             {% include 'header.html' %}
         {% endwith %}
 
         <div class="container p-4">
 
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Update</button>
-            </form>
-            <a href="/accounts/logout" class="btn btn-dark mt-4">Logout</a>
-            <a href="/accounts/password/change/" class="btn btn-dark mt-4">Change Password</a>
-        </div>
+      <div class="row">
+            <div class="col-md-8 col-sm-12 mx-auto justify-content-center bg-body border rounded shadow p-4">
 
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Update</button>
+                </form>
+                <a href="/accounts/logout" class="btn btn-dark mt-4">Logout</a>
+                <a href="/accounts/password/change/" class="btn btn-dark mt-4">Change Password</a>
+            </div>
+        </div>
+      </div>
         <footer class="py-3 my-4">
             <p class="text-center text-muted">© 2023 </p>
         </footer>

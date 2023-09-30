@@ -13,8 +13,8 @@ def index(request):
 
 @login_required
 def checkin(request):
+    # TODO: Can't checkin if more than 48 hours have passed.
     user_profile = get_object_or_404(UserProfile, user=request.user)
-    print(user_profile.checkins)
     utc_time_str = get_current_utc()
     user_profile.checkins.append(utc_time_str)
     user_profile.save()
