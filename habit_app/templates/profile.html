@@ -14,7 +14,7 @@
     .profile-pic {
         object-fit: cover;
         border-radius: 50%;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 </style>
 
@@ -23,7 +23,7 @@
     <main>
 
         {% with profile_picture=user.userprofile.profile_picture.url|default:'/media/profile.png' %}
-            {% include 'header.html' %}
+        {% include 'header.html' %}
         {% endwith %}
 
         <div class="container p-4">
@@ -34,9 +34,29 @@
                 <h3>{{ level_emoji }} {{ streak }} Days</h3>
                 <p>{{ user.userprofile.habits|linebreaks }}</p>
                 <img src="{{ user.userprofile.profile_picture.url }}"
-                    class="rounded-circle border {{ border_color }} shadow profile-pic border-5" height=128 width=128 alt="Profile Picture">
+                    class="rounded-circle border {{ border_color }} shadow profile-pic border-5" height=128 width=128
+                    alt="Profile Picture">
                 <p class="mt-4"> {{ window_message }} </p>
-                <a href="/{{ checkin_button.destination }}" class="btn btn-{{ checkin_button.color }} mt-4 {{ checkin_button.disabled }}">{{ checkin_button.label }}</a>
+
+                {% if checkin_button.disabled %}
+
+                <form action="/purchase/" method="post" class="form-inline">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="amount" class="mr-2">Stake an amount</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="amount" name="amount" min="1" step="1"
+                                placeholder="1+" required>
+                            <button type="submit" class="btn btn-primary rounded-left">Pay</button>
+                        </div>
+                    </div>
+                </form>
+
+
+                {% else %}
+                <a href="/{{ checkin_button.destination }}" class="btn btn-{{ checkin_button.color }} mt-4">{{ checkin_button.label }}</a>
+                {% endif %}
+
                 <a href="/u/{{ user }}" class="btn btn-info mt-4">Public Profile</a>
                 <a href="/manage" class="btn btn-dark mt-4">Manage Profile</a>
             </div>

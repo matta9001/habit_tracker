@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
@@ -6,6 +7,10 @@ from django.http import HttpResponse
 from .forms import EditUserForm
 from .models import UserProfile
 from .utils import calculate_streak, compare_utc, hours_since_time, get_current_utc, level_map
+
+import stripe
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def index(request):
@@ -33,6 +38,33 @@ def public_profile(request, username):
     context['level_emoji'] = level_map[level_capped]
 
     return render(request, 'public_profile.html', context)
+
+def purchase_streak(request):
+
+    stake_amount = min(1, int(request.POST.get('amount', 1)))
+    stake_amount_cents = stake_amount * 100
+
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {
+                        'name': 'Example',
+                    },
+                    'unit_amount': stake_amount_cents,
+                },
+                'quantity': 1,
+            }],
+            mode='payment',
+            success_url='http://localhost:4242/success/',
+            cancel_url='http://localhost:4242/cancel/',
+        )
+    except Exception as e:
+        return HttpResponse(e)
+
+    return redirect(checkout_session.url, status=303)
 
 
 @login_required
@@ -79,19 +111,16 @@ def profile(request):
         context['checkin_button']['label'] = 'Checked In'
         context['checkin_button']['color'] = 'outline-primary'
         context['checkin_button']['destination'] = ''
-        context['checkin_button']['disabled'] = 'disabled'
+        context['checkin_button']['disabled'] = False
     elif checkin_window > 0:
         context['window_message'] = f"You have {checkin_window} hours to check in."
         context['checkin_button']['label'] = 'Check In'
         context['checkin_button']['color'] = 'success'
         context['checkin_button']['destination'] = 'checkin'
-        context['checkin_button']['disabled'] = ''
+        context['checkin_button']['disabled'] = False
     else:
         context['window_message'] = ""
-        context['checkin_button']['label'] = 'Start Streak!'
-        context['checkin_button']['color'] = 'primary'
-        context['checkin_button']['destination'] = 'purchase'
-        context['checkin_button']['disabled'] = ''
+        context['checkin_button']['disabled'] = True
 
     # Calculate Streak 
     streak = round(calculate_streak(user_profile.checkins) / 24)

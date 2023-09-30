@@ -18,10 +18,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from habit_app.views import index, profile, manage, checkin, public_profile
+from habit_app.views import index, profile, manage, checkin, public_profile, purchase_streak
 
 urlpatterns = [
     path('', index),
+    path('purchase/', purchase_streak, name='purchase streak'),
     path('profile/', profile),
     path('checkin/', checkin),
     path('u/<str:username>', public_profile),
