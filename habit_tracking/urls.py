@@ -24,7 +24,7 @@ urlpatterns = [
     path('', index),
     path('profile/', profile),
     path('checkin/', checkin),
-    path('public_profile/<str:username>', public_profile),
+    path('u/<str:username>', public_profile),
     path('manage/', manage),
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
