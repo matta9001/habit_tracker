@@ -14,7 +14,7 @@
 
     <main>
 
-        {% with profile_picture=user.userprofile.profile_picture.url|default:'/media/profile.png %}
+        {% with profile_picture=user.userprofile.profile_picture.url|default:'/media/profile.png' %}
             {% include 'header.html' %}
         {% endwith %}
 
