@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .utils import get_current_utc
-from PIL import Image
+from PIL import Image, ImageOps
 
 import time
 
@@ -24,16 +24,7 @@ class UserProfile(models.Model):
         super().save(*args, **kwargs)
 
         img = Image.open(self.profile_picture.path)
-        width, height = img.size
+        img = ImageOps.exif_transpose(img)  # This can also handle orientation
+        img = ImageOps.fit(img, (512, 512), method=0, bleed=0.0, centering=(0.5, 0.5))
 
-        new_dimension = min(width, height)
-
-        left = (width - new_dimension)/2
-        top = (height - new_dimension)/2
-        right = (width + new_dimension)/2
-        bottom = (height + new_dimension)/2
-
-        img = img.crop((left, top, right, bottom))
-        img = img.resize((512, 512))
-        
         img.save(self.profile_picture.path)
