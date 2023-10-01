@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .utils import get_current_utc
+from PIL import Image
 
 import time
 
@@ -19,3 +20,20 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.profile_picture.path)
+        width, height = img.size
+
+        new_dimension = min(width, height)
+
+        left = (width - new_dimension)/2
+        top = (height - new_dimension)/2
+        right = (width + new_dimension)/2
+        bottom = (height + new_dimension)/2
+
+        img = img.crop((left, top, right, bottom))
+        img = img.resize((512, 512))
+        
+        img.save(self.profile_picture.path)
