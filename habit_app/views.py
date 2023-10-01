@@ -65,8 +65,6 @@ def profile(request):
     hours_since = hours_since_time(last_checkin)
     checkin_window = 48 - hours_since
 
-    print(checkin_window)
-
     if checkin_window >= 48:
         context['border_color'] = 'border-success'
     elif checkin_window >= 24:

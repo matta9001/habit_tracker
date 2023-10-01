@@ -18,8 +18,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from habit_app.views import index, profile, manage, checkin, public_profile, purchase_streak
-from habit_app.payment import stripe_webhook
+from habit_app.views import index, profile, manage, checkin, public_profile
+from habit_app.payment import stripe_webhook, purchase_streak
 
 urlpatterns = [
     path('', index),
