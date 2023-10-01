@@ -31,8 +31,8 @@ def purchase_streak(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='http://localhost:8000/',
-            cancel_url='http://localhost:8000/',
+            success_url='/',
+            cancel_url='/',
             metadata={'user_id': str(user_profile)}
         )
     except Exception as e:

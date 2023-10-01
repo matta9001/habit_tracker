@@ -21,11 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n@ja@y&q+51-2rh0dc+3t8==biah$&**n_4@w&3b)4v#((t^^y'
+SECRET_KEY = ''
 
-STRIPE_PUBLIC_KEY = 'pk_live_51Nw79ABx1547ajCyVzJnIUZhZXggRjiRsbn15Siw4qjkbaSYokU1A0rnFA1G94LOj6YPYyNqwKSzUGgY4Ak72sn200iieZ4VCa'
-STRIPE_SECRET_KEY = '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'
-STRIPE_WEBHOOK_SECRET = 'whsec_2b7a07b27e73680cbb14f3a0a79b71091ba79c232075c19c7c1b7cfbbc33626a'
+STRIPE_PUBLIC_KEY = ''
+STRIPE_SECRET_KEY = ''
+STRIPE_WEBHOOK_SECRET = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
