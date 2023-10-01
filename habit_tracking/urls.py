@@ -19,16 +19,20 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from habit_app.views import index, profile, manage, checkin, public_profile, purchase_streak
+from habit_app.payment import stripe_webhook
 
 urlpatterns = [
     path('', index),
-    path('purchase/', purchase_streak, name='purchase streak'),
     path('profile/', profile),
     path('checkin/', checkin),
-    path('u/<str:username>', public_profile),
     path('manage/', manage),
     path('accounts/', include('allauth.urls')),
+    path('u/<str:username>', public_profile),
+
     path('admin/', admin.site.urls),
+
+    path('purchase/', purchase_streak, name='purchase streak'),
+    path('webhook', stripe_webhook, name='stripe_webhook'),
 ]
 
 if settings.DEBUG:

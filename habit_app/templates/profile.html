@@ -46,7 +46,7 @@
                         <label for="amount" class="mr-2">Stake an amount</label>
                         <div class="input-group">
                             <input type="number" class="form-control" id="amount" name="amount" min="1" step="1"
-                                placeholder="1+" required>
+                                placeholder="$1+" required>
                             <button type="submit" class="btn btn-primary rounded-left">Pay</button>
                         </div>
                     </div>
@@ -54,7 +54,9 @@
 
 
                 {% else %}
-                <a href="/{{ checkin_button.destination }}" class="btn btn-{{ checkin_button.color }} mt-4">{{ checkin_button.label }}</a>
+
+                    <a href="/{{ checkin_button.destination }}" class="btn btn-{{ checkin_button.color }} mt-4">{{ checkin_button.label }}</a>
+
                 {% endif %}
 
                 <a href="/u/{{ user }}" class="btn btn-info mt-4">Public Profile</a>
