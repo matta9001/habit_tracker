@@ -21,21 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'T!jA%QdcfETNan8W!y6Gpn*quN5UpVr6T6HryB#!DHAxYHBZ**'
 
-# Stripe Settings
-STRIPE_PUBLIC_KEY = 'pk_live_51Nw79ABx1547ajCyVzJnIUZhZXggRjiRsbn15Siw4qjkbaSYokU1A0rnFA1G94LOj6YPYyNqwKSzUGgY4Ak72sn200iieZ4VCa'
-STRIPE_SECRET_KEY = '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'
-STRIPE_WEBHOOK_SECRET = 'whsec_E64P1pc4osiRBDoMIaOvw5D9ziDrcome'
-
-# SMTP Settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.protonmail.ch'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'support@masoftware.net'
-EMAIL_HOST_USER = 'support@masoftware.net'
-EMAIL_HOST_PASSWORD = 'ZHPSU2TFQVMDJMUB'
+# Some keys were accidentally checked in, they were revoked on all services they provide access to.
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
