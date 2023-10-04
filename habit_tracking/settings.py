@@ -21,20 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'T!jA%QdcfETNan8W!y6Gpn*quN5UpVr6T6HryB#!DHAxYHBZ**'
 
-STRIPE_PUBLIC_KEY = ''
-STRIPE_SECRET_KEY = ''
-STRIPE_WEBHOOK_SECRET = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
-# DEBUG ONLY
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['habitstake.com', '54.172.35.24']
 
 # Application definition
 
@@ -118,8 +111,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 LOGIN_REDIRECT_URL = '/manage'
 
 ACCOUNT_EMAIL_REQUIRED = True
@@ -140,8 +131,9 @@ SITE_ID = 1
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+#STATICFILES_DIRS = [BASE_DIR / "habit_app/static"]
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "habit_app/static"]
+STATIC_ROOT = 'habit_app/static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

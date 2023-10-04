@@ -31,8 +31,8 @@ def purchase_streak(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='/',
-            cancel_url='/',
+            success_url='https://habitstake.com/profile/',
+            cancel_url='https://habitstake.com/profile/',
             metadata={'user_id': str(user_profile)}
         )
     except Exception as e:
@@ -42,6 +42,8 @@ def purchase_streak(request):
 
 @csrf_exempt
 def stripe_webhook(request):
+    print("HELLO THERE")
+
     payload = request.body
     sig_header = request.META['HTTP_STRIPE_SIGNATURE']
     event = None
