@@ -32,7 +32,7 @@
                 <h1>{{ username }}</h1>
                 <h3>{{ level_emoji }} {{ streak }} Days</h3>
                 <p>{{ user.userprofile.habits|linebreaks }}</p>
-                <img src="{{ user.userprofile.profile_picture.url }}"
+                <img src="{{ profile_picture_url }}"
                     class="rounded-circle border {{ border_color }} shadow profile-pic border-5" height=128 width=128 alt="Profile Picture">
                 <p class="mt-4"> {{ window_message }} </p>
             </div>

@@ -33,6 +33,9 @@ def public_profile(request, username):
     level_capped = min(level, 51)
     context['level_emoji'] = level_map[level_capped]
 
+    # Get PFP
+    context['profile_picture_url'] = user_profile.profile_picture.url
+
     return render(request, 'public_profile.html', context)
 
 
