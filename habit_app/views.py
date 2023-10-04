@@ -36,6 +36,9 @@ def public_profile(request, username):
     # Get PFP
     context['profile_picture_url'] = user_profile.profile_picture.url
 
+    # Get PFP
+    context['habits'] = user_profile.habits
+
     return render(request, 'public_profile.html', context)
 
 
