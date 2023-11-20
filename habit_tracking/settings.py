@@ -42,7 +42,7 @@ EMAIL_HOST_USER = "support@masoftware.net"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['habitstake.com', '54.172.35.24']
+ALLOWED_HOSTS = ['habitstake.com', '54.172.35.24', '.awsapprunner.com']
 
 # Application definition
 
@@ -69,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware'
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'habit_tracking.urls'
@@ -147,8 +148,20 @@ SITE_ID = 1
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 #STATICFILES_DIRS = [BASE_DIR / "habit_app/static"]
-STATIC_URL = '/static/'
-STATIC_ROOT = 'habit_app/static'
+#STATIC_URL = '/static/'
+#STATIC_ROOT = 'habit_app/static'
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
