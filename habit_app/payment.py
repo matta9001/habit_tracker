@@ -31,8 +31,8 @@ def purchase_streak(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='https://habitstake.com/profile/',
-            cancel_url='https://habitstake.com/profile/',
+            success_url='https://habitstake.com/accounts/profile/',
+            cancel_url='https://habitstake.com/accounts/profile/',
             metadata={'user_id': str(user_profile)}
         )
     except Exception as e:
