@@ -1,0 +1,59 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account socialaccount %}
+{% block head_title %}
+{% trans "Sign In" %}
+{% endblock head_title %}
+{% block content %}
+
+<div class="card-body">
+	<h2>
+		Sign Up
+	</h2>
+	<hr>
+	<form method="post" action="/accounts/signup/" data-bitwarden-watching="1">
+
+		{% csrf_token %}
+
+		{% if form.errors %}
+		    {% for field in form %}
+		        {% for error in field.errors %}
+					<p>{{ error|escape }}</p>
+		        {% endfor %}
+		    {% endfor %}
+		    {% for error in form.non_field_errors %}
+				<p>{{ error|escape }}</p>
+		    {% endfor %}
+		{% endif %}
+
+		<p>
+			<input class="form-control" type="text" name="username" placeholder="Username" autocomplete="username" minlength="1"
+				maxlength="150" required="" id="id_username">
+		</p>
+		<p>
+			<input class="form-control" type="email" name="email" placeholder="Email address" autocomplete="email" maxlength="320"
+				id="id_email">
+		</p>
+		<p>
+			<input class="form-control" type="password" name="password1" placeholder="Password" autocomplete="new-password" required=""
+				id="id_password1">
+			<span class="helptext"></span>
+		</p>
+		<p>
+			<input class="form-control" type="password" name="password2" placeholder="Password (again)" autocomplete="new-password"
+				required="" id="id_password2">
+		</p>
+		<input type="hidden" name="next" value="/accounts/profile/">
+		<button class="btn btn-success w-100">
+			Sign Up
+		</button>
+	</form>
+	<hr>
+	<div class="row">
+		<a class="btn btn-primary mt-2" href="/accounts/login/?next=%2Faccounts%2Fprofile%2F">
+			Log Into Existing Account
+		</a>
+	</div>
+</div>
+
+{% endblock content %}
