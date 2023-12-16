@@ -42,7 +42,7 @@ EMAIL_HOST_USER = "support@masoftware.net"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.109', 'habitstake.com', '54.172.35.24', '.awsapprunner.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'habitstake.com', '54.162.198.162' ]
 
 # Application definition
 

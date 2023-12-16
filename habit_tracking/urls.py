@@ -23,7 +23,7 @@ from habit_app.payment import stripe_webhook, purchase_streak
 
 urlpatterns = [
     path('', index),
-    path('profile/', profile),
+    path('accounts/profile/', profile),
     path('checkin/', checkin),
     path('manage/', manage),
     path('accounts/', include('allauth.urls')),

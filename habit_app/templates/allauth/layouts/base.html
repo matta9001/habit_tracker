@@ -5,11 +5,14 @@
 
 {% include 'head.html' %}
 
+		{% with profile_picture=user.userprofile.profile_picture.url|default:'/media/profile.png' %}
+		{% include 'header.html' %}
+		{% endwith %}
+
 <body class="bg-body-tertiary">
 
 	<main>
 
-		{% include 'navbar.html' %}
 
 		<div class="container p-4 text-center">
 			<div class="card mx-auto" style="max-width: 24rem;">
