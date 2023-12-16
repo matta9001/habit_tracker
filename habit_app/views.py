@@ -56,7 +56,7 @@ def checkin(request):
     else:
         return HttpResponse(status=403)
 
-    return redirect('/profile')
+    return redirect('/accounts/profile')
 
 
 @login_required
@@ -116,7 +116,7 @@ def manage(request):
         form = EditUserForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
             form.save()
-            return redirect('/profile')
+            return redirect('/accounts/profile')
     else:
         form = EditUserForm(instance=user_profile)
 
