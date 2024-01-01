@@ -23,7 +23,7 @@ def public_profile(request, username):
     # checkin Availability
     last_checkin = user_profile.checkins[-1]
     hours_since = hours_since_time(last_checkin)
-    checkin_window = 48 - hours_since
+    checkin_window = 72 - hours_since
 
     streak = round(calculate_streak(user_profile.checkins) / 24)
     context['streak'] = streak
@@ -49,7 +49,7 @@ def checkin(request):
     last_checkin = user_profile.checkins[-1]
     hours_since = hours_since_time(last_checkin)
 
-    if hours_since >= 1 and hours_since <= 48:
+    if hours_since >= 1 and hours_since <= 72:
         utc_time_str = get_current_utc()
         user_profile.checkins.append(utc_time_str)
         user_profile.save()
@@ -69,9 +69,9 @@ def profile(request):
     # checkin Availability
     last_checkin = user_profile.checkins[-1]
     hours_since = hours_since_time(last_checkin)
-    checkin_window = 48 - hours_since
+    checkin_window = 72 - hours_since
 
-    if checkin_window >= 48:
+    if checkin_window >= 72:
         context['border_color'] = 'border-success'
     elif checkin_window >= 24:
         context['border_color'] = 'border-warning'
@@ -80,7 +80,7 @@ def profile(request):
     elif checkin_window >= 1:
         context['border_color'] = ''
 
-    if checkin_window >= 48:
+    if checkin_window >= 72:
         context['window_message'] = ""
         context['checkin_button']['label'] = 'Come Back Tomorrow'
         context['checkin_button']['color'] = 'outline-primary'
