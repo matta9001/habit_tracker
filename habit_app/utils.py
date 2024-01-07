@@ -35,7 +35,7 @@ def calculate_streak(utc_list):
     utc_list_reversed = utc_list[::-1]
     for i in range(len(utc_list_reversed) - 1):
         hours_difference = compare_utc(utc_list_reversed[i+1], utc_list_reversed[i])
-        if hours_difference > 0 and hours_difference <= 48:
+        if hours_difference > 0 and hours_difference <= 72:
             streak_index = i+1
         else:
             break
